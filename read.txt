@@ -1,0 +1,37 @@
+脚本作用：
+编译Android平台的FFmpeg。集成处理MP3的Lame，处理H264编码的x264，处理aac音乐的fdk-acc，https功能的openssl。
+
+脚本位置：
+将所有文件移到与要编译的库所在的同一目录下，如下结构
+libs
+--lame（文件夹）
+--x264（文件夹）
+--fdk-aac（文件夹）
+--build-lame.sh（脚本）
+--...
+--...
+
+特别注意：
+脚本configure选项要换行时，\后面不能有空格，同时也应检查空格是否是正确的，为保险起见可以删除空格再填入空格，否则会引发--xxx command not found错误，从而影响生成/ffbuild/config.mk，导致不能编译。
+
+该脚本使用的ndk是windows版本的，如需使用linux版本的，需修改config.sh中的相应路径。
+
+编译：
+先生成lame、X264、fdk-acc、openssl，最后生成FFmpeg，将前面四个库集成生成到FFmpeg。
+切换到脚本所在目录，执行库编译命令，如：./build-lame.sh arm64-v8a。脚本名后面跟上要编译的平台架构，具体可参看config.sh和build-x264-all.sh。若要生成全平台库，参考build-x264-all.sh编写相应库的全平台生成脚本。
+
+说明：
+脚本依赖于config.sh，该脚本定义了基础变量，在其他脚本中引用。
+编译后会在脚本所在目录生成一个名为libs的目录，库都输出到该目录。
+
+
+问题：
+x264不能编译为动态库，即--enable-shared选项不能开启，开启后出错不会生成库，即使--enable-static也开启也不会生成.a文件。
+
+版本信息：
+fdk-aac 2.0.1
+ffmpeg 4.3.1
+lame 3.100
+openssl 1.1.1i
+x264 (2020.12.31版本未知）
+ndk 21
