@@ -24,6 +24,13 @@ libs
 脚本依赖于config.sh，该脚本定义了基础变量，在其他脚本中引用。
 编译后会在脚本所在目录生成一个名为libs的目录，库都输出到该目录。
 
+环境准备：
+windows下安装msys2，注意安装目录能用空格，当然也不能安装在program files目录，否则会出现不能更新或安装应用的问题。安装好后，在msys2的命令行下执行pacman -Syu。关闭，然后重新打开，再执行pacman -Su。
+执行：
+pacman -S make，安装make工具。
+pacman -S yasm，安装yasm汇编器。
+pacman -S diffutils，安装文件比对工具。如果不安装在编译FFmpeg时会出现cmp命令未找到的问题，同时会影响编译输出，有一个库编译为了静态库。
+
 
 问题：
 x264不能编译为动态库，即--enable-shared选项不能开启，开启后出错不会生成库，即使--enable-static也开启也不会生成.a文件。
