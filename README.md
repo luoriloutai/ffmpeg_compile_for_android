@@ -1,9 +1,9 @@
-# ffmpeg_compile_for_android
+# 使用说明
 ffmpeg android平台编译脚本及库文件。集成了用于处理MP3的Lame，处理aac的fdk-aac，x264及openssl。
 
 ## 环境及准备：
 
-+ 下载NDK及各库源码
++ 下载NDK及各库源码。
 + 将源码放到对应的目录中。或者自行修改脚本，使源码路径正确。
 + 修改config.sh中的ANDROID_NDK_ROOT为正确的NDK目录。
 + 如果想编译其他API版本，修改AOSP_API。
@@ -20,3 +20,8 @@ ffmpeg android平台编译脚本及库文件。集成了用于处理MP3的Lame�
      执行lame_all.sh可编译所有平台的lame。其他库同理。
  - ### 一次性编译所有平台所有的库
    直接执行 all.sh，不需管编译顺序。
+   
+ ## 输出位置：
+   编译后会生成一个libs目录，编译后的库都输出到其中。
+   
+
