@@ -18,6 +18,8 @@ libs
 
 修改config.sh中的ANDROID_NDK_ROOT、TOOLCHAIN变量为自己环境的值。
 
+如果想用其他版本的API编译，修改config.sh 中的AOSP_API。
+
 将库源码放到相应的目录下（lame、openssl等文件夹下），或者修改各个构建脚本（*_all.sh和config.sh除外）中“cd xxx”的xxx为自己库源码所在的位置。
 
 ====编译====
@@ -35,7 +37,7 @@ libs
 ====说明====
 config.sh，该脚本定义了基础变量，在其他脚本中引用。
 
-编译后会在脚本所在目录生成一个名为libs的目录和一个名为android的目录，编译好的lame、x264、openssl、fdkaac库都输出到libs目录，ffmpeg编译后会输出到android目录。
+编译后会在脚本所在目录生成一个名为libs的目录，编译好的库都输出到libs目录。
 
 lame、openssl、fdk-acc、X264可以编译为静态库，FFmpeg链接其他库编译为动态库。
 
@@ -48,3 +50,4 @@ lame 3.100
 openssl 1.1.1i
 x264 (2020.12.31最新版）
 ndk 21
+api 21(android 5.0)
