@@ -22,6 +22,12 @@ libs
 
 ====编译====
 先生成lame、X264、fdk-acc、openssl，最后生成FFmpeg，将前面四个库集成生成到FFmpeg。
+编译方法：
+
+打开终端，切换到脚本所在目录，执行如 ./lame.sh arm64-v8a 格式的命令生成库。脚本后的参数可参考config里的选项。
+
+*.all.sh 用来生成各个库的所有版本，all.sh用来生成所有库，如果想最简单地一次性生成所有平台的库，使用该脚本。
+
 
 ====特别注意====
 脚本中configure选项要换行时，\后面不能有空格，否则会引发--xxx command not found错误，从而影响生成/ffbuild/config.mk，导致不能编译。
