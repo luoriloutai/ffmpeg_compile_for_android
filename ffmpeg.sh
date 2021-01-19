@@ -1,25 +1,23 @@
 #!/bin/bash
-
-# 编译ffmpeg，链接x264和fdkaac
 ARCH=$1
 
 source config.sh $ARCH
 NOW_DIR=$(cd `dirname $0`; pwd)
-LIBS_DIR=$NOW_DIR/libs
+LIBS_DIR=$NOW_DIR
 
-# 源码目录，自行更改
+# ffmpeg源码路径
 cd ffmpeg
 
 
 # 输出路径
-PREFIX=$LIBS_DIR/ffmpeg/$AOSP_ABI
+PREFIX=$LIBS_DIR/android/$AOSP_ABI
 
 # 头文件目录
-FDK_INCLUDE=$LIBS_DIR/libfdk-aac/$AOSP_ABI/include
+FDK_INCLUDE=$LIBS_DIR/libs/libfdk-aac/$AOSP_ABI/include
 # 库文件目录
-FDK_LIB=$LIBS_DIR/libfdk-aac/$AOSP_ABI/lib
-X264_INCLUDE=$LIBS_DIR/libx264/$AOSP_ABI/include
-X264_LIB=$LIBS_DIR/libx264/$AOSP_ABI/lib
+FDK_LIB=$LIBS_DIR/libs/libfdk-aac/$AOSP_ABI/lib
+X264_INCLUDE=$LIBS_DIR/libs/libx264/$AOSP_ABI/include
+X264_LIB=$LIBS_DIR/libs/libx264/$AOSP_ABI/lib
 OPENSSL_INCLUDE=$LIBS_DIR/openssl/$AOSP_ABI/include
 OPENSSL_LIB=$LIBS_DIR/openssl/$AOSP_ABI/lib
 LAME_INCLUDE=$LIBS_DIR/liblame/$AOSP_ABI/include
@@ -35,7 +33,7 @@ LAME_LIB=$LIBS_DIR/liblame/$AOSP_ABI/lib
 --cc=$CC \
 --cxx=$CXX \
 --cross-prefix=$CROSS_PREFIX \
---extra-cflags="-I$X264_INCLUDE  -I$FDK_INCLUDE -I$OPENSSL_INCLUDE -I$LAME_INCLUDE $FF_CFLAGS" \
+--extra-cflags="-I$X264_INCLUDE  -I$FDK_INCLUDE  -I$OPENSSL_INCLUDE  -I$LAME_INCLUDE  $FF_CFLAGS" \
 --extra-cxxflags="$FF_EXTRA_CFLAGS" \
 --extra-ldflags="-L$X264_LIB -L$FDK_LIB -L$OPENSSL_LIB -L$LAME_LIB" \
 --extra-libs=-lm \
@@ -44,15 +42,13 @@ LAME_LIB=$LIBS_DIR/liblame/$AOSP_ABI/lib
 --enable-shared \
 --enable-jni \
 --enable-mediacodec \
---enable-pthreads \
 --enable-pic \
---disable-iconv \
+--enable-gpl \
 --enable-libx264 \
---enable-libfdk_aac \
+--enable-nonfree \
+--enable-libfdk_aac
 --enable-openssl \
 --enable-libmp3lame \
---enable-gpl \
---enable-nonfree \
 --enable-dct \
 --enable-dwt \
 --enable-lsp \
@@ -80,8 +76,11 @@ LAME_LIB=$LIBS_DIR/liblame/$AOSP_ABI/lib
 --enable-demuxer=hls \
 --enable-demuxer=rtp \
 --enable-demuxer=rtsp \
+--enable-demuxer=mp3 \
 --enable-demuxer=wav \
 --enable-demuxer=aac \
+--enable-demuxer=mpegvideo \
+--enable-demuxer=m4v \
 --disable-encoders \
 --enable-encoder=aac \
 --enable-encoder=libfdk_aac \
@@ -104,6 +103,7 @@ LAME_LIB=$LIBS_DIR/liblame/$AOSP_ABI/lib
 --enable-decoder=pcm_s16le \
 --disable-parsers \
 --enable-parser=aac \
+--enable-parser=mpegaudio \
 --enable-parser=aac_latm \
 --enable-parser=h264 \
 --enable-parser=mjpeg \
@@ -126,15 +126,10 @@ LAME_LIB=$LIBS_DIR/liblame/$AOSP_ABI/lib
 --enable-zlib \
 --enable-small \
 --enable-postproc \
---disable-outdevs \
---disable-indevs \
---disable-ffprobe \
---disable-ffplay \
---disable-ffmpeg \
---disable-debug \
---disable-symver 
+--disable-debug
+
+
 make clean
-make -j8
+make -j4
 make install
 
-cd ..

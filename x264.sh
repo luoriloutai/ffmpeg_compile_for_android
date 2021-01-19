@@ -8,7 +8,7 @@ source config.sh $ARCH
 LIBS_DIR=$(cd `dirname $0`; pwd)/libs/libx264
 echo "LIBS_DIR="$LIBS_DIR
 
-# 注意修改为正确的x264源码路径
+# x264源码路径
 cd x264
 
 export CC=$CC
@@ -18,11 +18,16 @@ export CFLAGS=$FF_CFLAGS
 export AR="${CROSS_PREFIX}ar"
 export LD="${CROSS_PREFIX}ld"
 export AS="${CROSS_PREFIX}as"
-export NM="${CROSS_PREFIX}nm"
-export STRIP="${CROSS_PREFIX}strip"
-export RANLIB="${CROSS_PREFIX}ranlib"
+export NM="${CROSS_COMPILE}nm"
+export STRIP="${CROSS_COMPILE}strip"
+export RANLIB="${CROSS_COMPILE}ranlib"
 
 PREFIX=$LIBS_DIR/$AOSP_ABI
+
+export HOST=$HOST
+export CROSS_PREFIX=$CROSS_PREFIX
+export SYS_ROOT=$SYS_ROOT
+export FF_CFLAGS=$FF_CFLAGS
 
 ./configure --prefix=$PREFIX \
 --enable-static \
@@ -36,7 +41,7 @@ PREFIX=$LIBS_DIR/$AOSP_ABI
 --extra-ldflags=""
 
 make clean
-make -j8
+make -j2
 make install
 
 cd ..

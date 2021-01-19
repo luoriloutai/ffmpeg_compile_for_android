@@ -3,13 +3,13 @@
 ARCH=$1
 
 source config.sh $ARCH
-LIBS_DIR=$(cd `dirname $0`; pwd)/libs/liblame
-echo "LIBS_DIR="$LIBS_DIR
+LIBS_DIR=$(cd `dirname $0`; pwd)/libs/libfdk-aac
+#fdk-aac源码路径
+cd fdk-aac
 
-#注意修改为正确位置
-cd lame
 
 PREFIX=$LIBS_DIR/$AOSP_ABI
+echo "PREFIX="$PREFIX
 
 export CC="$CC"
 export CXX="$CXX"
@@ -23,15 +23,17 @@ export AS="${CROSS_PREFIX}as"
 
 
 ./configure \
---enable-static \
---enable-shared \
---host=$HOST \
+--prefix=$PREFIX \
 --target=android \
---disable-frontend \
---prefix=$PREFIX
+--with-sysroot=$SYS_ROOT \
+--enable-static \
+--disable-shared \
+--host=$HOST 
+
 
 make clean
-make -j8
+make -j2
 make install
 
 cd ..
+

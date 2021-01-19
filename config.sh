@@ -1,6 +1,5 @@
-
-#NDK路径，修改为正确的路径
-export ANDROID_NDK_ROOT=/d/Environment/Android/Sdk/ndk/21.1.6352462
+#NDK路径
+export ANDROID_NDK_ROOT=/home/kali/Libs/ndk21
 
 export AOSP_API="21"
 
@@ -60,7 +59,7 @@ case "$THE_ARCH" in
 	;;
 esac
 # 工具链
-TOOLCHAIN=$ANDROID_NDK_ROOT/toolchains/llvm/prebuilt/windows-x86_64  #注意修改为正确的路径，这里为windows-x86_64
+TOOLCHAIN=$ANDROID_NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64
 SYS_ROOT=$TOOLCHAIN/sysroot
 # 交叉编译路径
 CROSS_PREFIX=$TOOLCHAIN/bin/$TOOLNAME_BASE-
@@ -73,3 +72,4 @@ echo "COMPILER_BASE="$COMPILER_BASE
 echo "AOSP_ABI="$AOSP_ABI
 echo "AOSP_ARCH="$AOSP_ARCH
 echo "HOST="$HOST
+

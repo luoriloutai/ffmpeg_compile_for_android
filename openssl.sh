@@ -20,7 +20,6 @@ export NM="${CROSS_PREFIX}nm"
 --prefix=$PREFIX \
 no-shared \
 no-engine \
-no-dtls \
 no-hw
 
 make clean
