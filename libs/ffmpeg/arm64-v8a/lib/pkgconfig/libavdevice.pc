@@ -1,0 +1,14 @@
+prefix=/home/kali/Desktop/android-ffmpeg/libs/ffmpeg/arm64-v8a
+exec_prefix=${prefix}
+libdir=/home/kali/Desktop/android-ffmpeg/libs/ffmpeg/arm64-v8a/lib
+includedir=/home/kali/Desktop/android-ffmpeg/libs/ffmpeg/arm64-v8a/include
+
+Name: libavdevice
+Description: FFmpeg device handling library
+Version: 58.11.103
+Requires: 
+Requires.private: libavfilter >= 7.94.100, libswscale >= 5.8.100, libpostproc >= 55.8.100, libavformat >= 58.65.100, libavcodec >= 58.115.102, libswresample >= 3.8.100, libavutil >= 56.62.100
+Conflicts:
+Libs: -L${libdir}  -lavdevice 
+Libs.private: -lm
+Cflags: -I${includedir}

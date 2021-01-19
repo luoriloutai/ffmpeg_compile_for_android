@@ -1,0 +1,14 @@
+prefix=/home/kali/Desktop/android-ffmpeg/libs/ffmpeg/arm64-v8a
+exec_prefix=${prefix}
+libdir=/home/kali/Desktop/android-ffmpeg/libs/ffmpeg/arm64-v8a/lib
+includedir=/home/kali/Desktop/android-ffmpeg/libs/ffmpeg/arm64-v8a/include
+
+Name: libswresample
+Description: FFmpeg audio resampling library
+Version: 3.8.100
+Requires: 
+Requires.private: libavutil >= 56.62.100
+Conflicts:
+Libs: -L${libdir}  -lswresample 
+Libs.private: -lm
+Cflags: -I${includedir}

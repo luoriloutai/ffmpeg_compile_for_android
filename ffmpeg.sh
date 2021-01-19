@@ -2,6 +2,7 @@
 ARCH=$1
 
 source config.sh $ARCH
+
 NOW_DIR=$(cd `dirname $0`; pwd)
 LIBS_DIR=$NOW_DIR
 
@@ -10,7 +11,7 @@ cd ffmpeg
 
 
 # 输出路径
-PREFIX=$LIBS_DIR/android/$AOSP_ABI
+PREFIX=$LIBS_DIR/libs/ffmpeg/$AOSP_ABI
 
 # 头文件目录
 FDK_INCLUDE=$LIBS_DIR/libs/libfdk-aac/$AOSP_ABI/include

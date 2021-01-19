@@ -1,0 +1,14 @@
+prefix=/home/kali/Desktop/android-ffmpeg/libs/ffmpeg/arm64-v8a
+exec_prefix=${prefix}
+libdir=/home/kali/Desktop/android-ffmpeg/libs/ffmpeg/arm64-v8a/lib
+includedir=/home/kali/Desktop/android-ffmpeg/libs/ffmpeg/arm64-v8a/include
+
+Name: libavcodec
+Description: FFmpeg codec library
+Version: 58.115.102
+Requires: 
+Requires.private: libswresample >= 3.8.100, libavutil >= 56.62.100
+Conflicts:
+Libs: -L${libdir}  -lavcodec 
+Libs.private: -pthread -lm -lz -lfdk-aac -lx264 -pthread -lm
+Cflags: -I${includedir}

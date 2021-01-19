@@ -1,0 +1,14 @@
+prefix=/home/kali/Desktop/android-ffmpeg/libs/ffmpeg/arm64-v8a
+exec_prefix=${prefix}
+libdir=/home/kali/Desktop/android-ffmpeg/libs/ffmpeg/arm64-v8a/lib
+includedir=/home/kali/Desktop/android-ffmpeg/libs/ffmpeg/arm64-v8a/include
+
+Name: libavformat
+Description: FFmpeg container format library
+Version: 58.65.100
+Requires: 
+Requires.private: libavcodec >= 58.115.102, libswresample >= 3.8.100, libavutil >= 56.62.100
+Conflicts:
+Libs: -L${libdir}  -lavformat 
+Libs.private: -lm -lz
+Cflags: -I${includedir}
