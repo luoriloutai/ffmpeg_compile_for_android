@@ -2,7 +2,7 @@
 ffmpeg android平台编译脚本及库文件。集成了用于处理MP3的Lame，处理aac的fdk-aac，x264及openssl。
 
 ## 环境及准备：
-
++ 优先使用Linux系统。windows下安装msys2，在编译X264时共享库生成不成功。
 + 下载NDK及各库源码。
 + 将源码放到对应的目录中。或者自行修改脚本，使源码路径正确。
 + 修改config.sh中的ANDROID_NDK_ROOT为正确的NDK目录。
