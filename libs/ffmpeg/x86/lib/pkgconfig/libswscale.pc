@@ -1,0 +1,14 @@
+prefix=/home/kali/Desktop/android-ffmpeg/libs/ffmpeg/x86
+exec_prefix=${prefix}
+libdir=/home/kali/Desktop/android-ffmpeg/libs/ffmpeg/x86/lib
+includedir=/home/kali/Desktop/android-ffmpeg/libs/ffmpeg/x86/include
+
+Name: libswscale
+Description: FFmpeg image rescaling library
+Version: 5.8.100
+Requires: 
+Requires.private: libavutil >= 56.62.100
+Conflicts:
+Libs: -L${libdir}  -lswscale 
+Libs.private: -lm
+Cflags: -I${includedir}
